@@ -1,34 +1,19 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 
-class CircleTimer extends StatefulWidget {
-  const CircleTimer({Key key}) : super(key: key);
+class CircleTimer {
+  int _counter;
+  Timer _timer;
+  Future<int> startTimer()async {
+    _counter = 30;
 
-  @override
-  _CircleTimerState createState() => _CircleTimerState();
-}
-
-class _CircleTimerState extends State<CircleTimer> {
-int _counter;
-Timer _timer;
-  void startTimer() {
-    _counter = 10;
-   
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_counter > 0) {
-          _counter--;
-        } else {
-          _timer.cancel();
-        }
-      });
+    _timer =   Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_counter > 0) {
+        _counter--;
+      } else {
+        _timer.cancel();
+      }
+      return _counter;
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text("$_counter"),
-    );
+    
   }
 }

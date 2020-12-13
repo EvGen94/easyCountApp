@@ -1,9 +1,29 @@
-import 'dart:async';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import './timer.dart';
+import './cubit/page_cubit.dart';
+import './ngenerator.dart';
+import './expression_panel.dart';
+import './keys_panel.dart';
 
+class PageOne extends StatelessWidget {
+  PageOne({Key key}) : super(key: key);
+  Generator generator = Generator();
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<PageCubit>(
+      create: (context) => PageCubit(generator),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+       //   ExpressionPanel(),
+          KeysPanel(),
+        ],
+      ),
+    );
+  }
+}
+
+/*
 class PageOne extends StatefulWidget {
   PageOne({Key key}) : super(key: key);
 
@@ -17,6 +37,7 @@ class _PageOneState extends State<PageOne> {
   List digits = List<int>();
   bool visible;
   int k = 0;
+  
 
   List<Widget> _getButtons(int index) {
     int n = 1;
@@ -85,56 +106,64 @@ class _PageOneState extends State<PageOne> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.height * 0.2,
-      ),
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.2,
+    final PageCubit pageBloc = BlocProvider.of<PageCubit>(context);
+    return BlocBuilder<PageCubit, PageState>(builder: (context, state) {
+      if (state is PageInitial) {
+        _showDialog();
+      }
+      if (state is PageNewNumber) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.2,
           ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("$_counter"),
-                Visibility(
-                  child: Text("${digits} + ${digits}"),
-                  visible: visible,
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.2,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("$_counter"),
+                    Visibility(
+                      child: Text("${digits} + ${digits}"),
+                      visible: visible,
+                    ),
+                    Visibility(
+                      child: Text("${state.listdata}"),
+                      visible: visible,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _getButtons(0),
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _getButtons(1),
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _getButtons(2),
+                      ),
+                    ),
+                  ],
                 ),
-                Visibility(
-                  child: Text("${digits}"),
-                  visible: visible,
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _getButtons(0),
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _getButtons(1),
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _getButtons(2),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.2,
+              ),
+            ],
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.2,
-          ),
-        ],
-      ),
-    );
+        );
+      }
+    });
   }
 
   Widget _oneKey(int number) {
@@ -174,4 +203,8 @@ class _PageOneState extends State<PageOne> {
   }
 }
 /*
+    */
+
+
+
     */
