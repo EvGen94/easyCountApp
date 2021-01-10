@@ -1,21 +1,36 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import './cubit/page_cubit.dart';
-import './ngenerator.dart';
-import './expression_panel.dart';
-import './keys_panel.dart';
+
+import 'cubit/formula_cubit.dart';
+import 'cubit/input_cubit.dart';
+import 'cubit/keyboard_cubit.dart';
+
+import './classes/ngenerator.dart';
+import './page_one_widgets/keysPanel.dart';
+
 
 class PageOne extends StatelessWidget {
   PageOne({Key key}) : super(key: key);
   Generator generator = Generator();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PageCubit>(
-      create: (context) => PageCubit(generator),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FormulaCubit>(
+          create: (BuildContext context) => FormulaCubit(generator),
+        ),
+        BlocProvider<InputCubit>(
+          create: (BuildContext context) => InputCubit(),
+        ),
+        BlocProvider<KeyboardCubit>(
+          create: (BuildContext context) => KeyboardCubit(),
+        ),
+      ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-       //   ExpressionPanel(),
+             FormulaLine(),
+             InputLine(),
           KeysPanel(),
         ],
       ),
