@@ -1,57 +1,32 @@
-import 'package:flutter/material.dart';
-import 'cubit/Expression_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import './page1widget.dart';
-import './Showdialog.dart';
+import 'package:easycount/cubit/formula_cubit.dart';
 
-class KeysPanel extends StatelessWidget {
-//  KeysPanel({Key key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/keyboard_cubit.dart';
+
+import 'widgets/Keyboard.dart';
+import 'widgets/Showdialog.dart';
+
+class Keyboard extends StatelessWidget {
+  Keyboard({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // final PageCubit pageCubit = context.bloc()<PageCubit>();
-    final PageCubit pageCubit = BlocProvider.of<PageCubit>(context);
-
-    return BlocBuilder<PageCubit, PageState>(
+    return BlocBuilder<KeyboardCubit, KeyboardState>(
       builder: (context, state) {
-        if (state is PageInitial) {
-          return Column(
-            children: [
-              Text("let's go!"),
-              Text("let's go!"),
-              SizedBox(
-                height: 200,
-              ),
-              Page1widget(),
-              ShowDialog(),
-            ],
-          );
+        if (state is KeyboardInitial) {
+          return Column(children: [
+            KeyboardDesign(),
+            ShowDialog(),
+          ]);
         }
-        if (state is PagePressedKey) {
-          return Column(
-            children: [
-              Expression(state.listdata),
-              Text("${state.key}"),
-              SizedBox(
-                height: 200,
-              ),
-              Page1widget()
-            ],
-          );
+        if (state is KeyboardDisp) {
+          return KeyboardDesign();
         }
 
         return Text("Not initial");
       },
     );
-  }
-
-  Widget Expression(List<int> list) {
-    String sign;
-    if (list[2] == 0) {
-      sign = "+";
-    } else {
-      sign = "-";
-    }
-    return Text("${list[0]}$sign${list[1]}");
   }
 }
 /*

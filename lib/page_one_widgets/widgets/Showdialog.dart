@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../cubit/formula_cubit.dart';
 
 class ShowDialog extends StatefulWidget {
   ShowDialog({Key key}) : super(key: key);
@@ -10,7 +12,8 @@ class ShowDialog extends StatefulWidget {
 }
 
 class _ShowDialogState extends State<ShowDialog> {
-  void _showDialog() async {
+  
+  void _showDialog(FormulaCubit fprmulacubit) async {
     await Future.delayed(Duration.zero);
     showDialog(
       context: context,
@@ -21,6 +24,7 @@ class _ShowDialogState extends State<ShowDialog> {
             FlatButton(
                 onPressed: () {
                   Navigator.pop(context);
+                  fprmulacubit.getFormula();
                 },
                 child: Text("I don't know"))
           ],
@@ -31,9 +35,10 @@ class _ShowDialogState extends State<ShowDialog> {
 
   @override
   void initState() {
+    final FormulaCubit fprmulacubit = BlocProvider.of<FormulaCubit>(context);
     super.initState();
     // digits = null;
-    _showDialog();
+    _showDialog(fprmulacubit);
   }
 
   @override

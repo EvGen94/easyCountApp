@@ -6,9 +6,10 @@ import 'cubit/input_cubit.dart';
 import 'cubit/keyboard_cubit.dart';
 
 import './classes/ngenerator.dart';
-import './page_one_widgets/keysPanel.dart';
 
-
+import './page_one_widgets/Keyboard_state.dart';
+import './page_one_widgets/formula_state.dart';
+import './page_one_widgets/input_state.dart';
 class PageOne extends StatelessWidget {
   PageOne({Key key}) : super(key: key);
   Generator generator = Generator();
@@ -29,9 +30,9 @@ class PageOne extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-             FormulaLine(),
-             InputLine(),
-          KeysPanel(),
+          FormulaLine(),
+          InputLine(),
+          Keyboard(),
         ],
       ),
     );

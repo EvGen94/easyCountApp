@@ -5,4 +5,12 @@ part 'keyboard_state.dart';
 
 class KeyboardCubit extends Cubit<KeyboardState> {
   KeyboardCubit() : super(KeyboardInitial());
+
+
+
+  void keyboardInitial() {
+    emit(KeyboardInitial());
+  }
+
+
 }
