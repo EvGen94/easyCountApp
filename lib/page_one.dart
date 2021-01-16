@@ -1,15 +1,18 @@
+import 'package:easycount/cubit/page_one/timer_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'cubit/formula_cubit.dart';
-import 'cubit/input_cubit.dart';
-import 'cubit/keyboard_cubit.dart';
+import 'cubit/page_one/formula_cubit.dart';
+import 'cubit/page_one/input_cubit.dart';
+import 'cubit/page_one/keyboard_cubit.dart';
 
 import './classes/ngenerator.dart';
 
 import './page_one_widgets/Keyboard_state.dart';
 import './page_one_widgets/formula_state.dart';
 import './page_one_widgets/input_state.dart';
+import './page_one_widgets/timer_state.dart';
+
 class PageOne extends StatelessWidget {
   PageOne({Key key}) : super(key: key);
   Generator generator = Generator();
@@ -26,6 +29,9 @@ class PageOne extends StatelessWidget {
         BlocProvider<KeyboardCubit>(
           create: (BuildContext context) => KeyboardCubit(),
         ),
+         BlocProvider<TimerCubit>(
+          create: (BuildContext context) => TimerCubit(),
+        ),
       ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,6 +39,7 @@ class PageOne extends StatelessWidget {
           FormulaLine(),
           InputLine(),
           Keyboard(),
+          Timer(),
         ],
       ),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/input_cubit.dart';
+import '../../cubit/page_one/input_cubit.dart';
+import '../../cubit/page_one/timer_cubit.dart';
 
 class KeyboardDesign extends StatelessWidget {
   KeyboardDesign({Key key}) : super(key: key);
@@ -9,6 +10,7 @@ class KeyboardDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inputCubit = BlocProvider.of<InputCubit>(context);
+    final timerCubit = BlocProvider.of<TimerCubit>(context);
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -17,15 +19,15 @@ class KeyboardDesign extends StatelessWidget {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
             GestureDetector(
               child: _oneKey(1),
-              onTap: () => {inputCubit.getKey(1)},
+              onTap: () => {inputCubit.getKey(1),timerCubit.getTick()},
             ),
             GestureDetector(
               child: _oneKey(2),
-              onTap: () => {inputCubit.getKey(2)},
+              onTap: () => {inputCubit.getKey(2),timerCubit.getTick()},
             ),
             GestureDetector(
               child: _oneKey(3),
-              onTap: () => {inputCubit.getKey(3)},
+              onTap: () => {inputCubit.getKey(3),timerCubit.getTick()},
             ),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../classes/ngenerator.dart';
+import '../../classes/ngenerator.dart';
 
 part 'formula_state.dart';
 
@@ -15,7 +15,7 @@ class FormulaCubit extends Cubit<FormulaState> {
     emit(FormulaInitial());
   }
 
-  int getFormula() {
+  void getFormula() {
      List<int> _nlist = ngenerator.generateRandomNumber();
     emit(FormulaG( listdata: _nlist));
   }

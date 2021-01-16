@@ -1,9 +1,9 @@
-import 'package:easycount/cubit/formula_cubit.dart';
+import 'package:easycount/cubit/page_one/formula_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/keyboard_cubit.dart';
+import '../cubit/page_one/keyboard_cubit.dart';
 
 import 'widgets/Keyboard.dart';
 import 'widgets/Showdialog.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/input_cubit.dart';
+import '../cubit/page_one/input_cubit.dart';
 
 class InputLine extends StatelessWidget {
   InputLine({Key key}) : super(key: key);
