@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: MyStatefulWidget(),
     );
@@ -57,15 +58,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("test1"),
+            label: "test1",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text("test2"),
+            label: "test2",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            title: Text("test3"),
+            label: "test3",
           ),
         ],
         currentIndex: _selectedIndex,

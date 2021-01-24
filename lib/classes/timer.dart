@@ -3,7 +3,7 @@ import 'dart:async';
 class Ticker {
   Stream<int> tick() {
     int ticks;
-    ticks = 60;
+    ticks = 5;
     return Stream.periodic(Duration(seconds: 1), (x) => ticks - x - 1)
         .take(ticks);
   }

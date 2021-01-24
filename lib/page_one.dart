@@ -31,17 +31,24 @@ class PageOne extends StatelessWidget {
         BlocProvider<KeyboardCubit>(
           create: (BuildContext context) => KeyboardCubit(),
         ),
-         BlocProvider<TimerCubit>(
+        BlocProvider<TimerCubit>(
           create: (BuildContext context) => TimerCubit(ticker),
         ),
       ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Timer(),
+            ],
+          ),
           FormulaLine(),
+          SizedBox(height: 30,),
           InputLine(),
+          SizedBox(height: 50,),
           Keyboard(),
-          Timer(),
         ],
       ),
     );
