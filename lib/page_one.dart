@@ -1,3 +1,4 @@
+import 'package:easycount/classes/timer.dart';
 import 'package:easycount/cubit/page_one/timer_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import './page_one_widgets/timer_state.dart';
 class PageOne extends StatelessWidget {
   PageOne({Key key}) : super(key: key);
   Generator generator = Generator();
+  Ticker ticker = Ticker();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -30,7 +32,7 @@ class PageOne extends StatelessWidget {
           create: (BuildContext context) => KeyboardCubit(),
         ),
          BlocProvider<TimerCubit>(
-          create: (BuildContext context) => TimerCubit(),
+          create: (BuildContext context) => TimerCubit(ticker),
         ),
       ],
       child: Column(

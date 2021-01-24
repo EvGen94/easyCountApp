@@ -1,6 +1,15 @@
 import 'dart:async';
 
-class CircleTimer {
+class Ticker {
+  Stream<int> tick() {
+    int ticks;
+    ticks = 60;
+    return Stream.periodic(Duration(seconds: 1), (x) => ticks - x - 1)
+        .take(ticks);
+  }
+}
+
+/*class CircleTimer {
   int _counter;
   Timer _timer;
   Future<int> startTimer()async {
@@ -16,4 +25,4 @@ class CircleTimer {
     });
     
   }
-}
+}*/

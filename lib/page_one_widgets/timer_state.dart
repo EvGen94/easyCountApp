@@ -13,12 +13,16 @@ class Timer extends StatelessWidget {
         if (state is TimerInitial) {
           return Text("Timer initial");
         }
-        if (state is TimerStart) {
-          return Text("${state.tick}");
+        if (state is TimerRun) {
+          return StreamBuilder(
+            stream: state.mystream,
+            builder: (contex, snapshot) {
+              return Text("${snapshot.data}");
+            },
+          );
         }
         return Text("Not initial Timer");
       },
-      
     );
   }
 }

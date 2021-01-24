@@ -7,13 +7,21 @@ import '../../classes/timer.dart';
 part 'timer_state.dart';
 
 class TimerCubit extends Cubit<TimerState> {
-  TimerCubit() : super(TimerInitial());
+  final Ticker ticker;
 
-  CircleTimer timer = CircleTimer();
+  TimerCubit(this.ticker) : super(TimerInitial());
 
-  Future<void> getTick() {
-    Future<int> tick;
-    tick = timer.startTimer();
-    emit(TimerStart(tick: tick));
+  void timerInitial() {
+    emit(TimerInitial());
+  }
+
+  void getTick() {
+    var controller = StreamController<int>();
+    
+    ticker.tick().listen((event) {
+      controller.sink.add(event);
+    });
+
+    emit(TimerRun(controller.stream));
   }
 }
