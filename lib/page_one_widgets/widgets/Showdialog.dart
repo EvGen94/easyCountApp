@@ -24,7 +24,7 @@ class _ShowDialogState extends State<ShowDialog> {
             FlatButton(
                 onPressed: () {
                   Navigator.pop(context);
-                  fprmulacubit.getFormula();
+                  fprmulacubit.getFormula(false);
                 },
                 child: Text("I don't know"))
           ],
@@ -35,12 +35,12 @@ class _ShowDialogState extends State<ShowDialog> {
 
   @override
   void initState() {
-    final FormulaCubit fprmulaCubit = BlocProvider.of<FormulaCubit>(context);
+    final FormulaCubit formulaCubit = BlocProvider.of<FormulaCubit>(context);
     // final TimerCubit timerCubit = BlocProvider.of<TimerCubit>(context);
 
     super.initState();
     // digits = null;
-    _showDialog(fprmulaCubit);
+    _showDialog(formulaCubit);
   }
 
   @override

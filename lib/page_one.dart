@@ -1,13 +1,13 @@
-import 'package:easycount/classes/timer.dart';
-import 'package:easycount/cubit/page_one/timer_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import './classes/timer.dart';
+import './classes/ngenerator.dart';
+
+import 'cubit/page_one/timer_cubit.dart';
 import 'cubit/page_one/formula_cubit.dart';
 import 'cubit/page_one/input_cubit.dart';
 import 'cubit/page_one/keyboard_cubit.dart';
-
-import './classes/ngenerator.dart';
 
 import './page_one_widgets/Keyboard_state.dart';
 import './page_one_widgets/formula_state.dart';
@@ -35,21 +35,24 @@ class PageOne extends StatelessWidget {
           create: (BuildContext context) => TimerCubit(ticker),
         ),
       ],
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Timer(),
-            ],
-          ),
-          FormulaLine(),
-          SizedBox(height: 30,),
-          InputLine(),
-          SizedBox(height: 50,),
-          Keyboard(),
-        ],
+      child: SafeArea(
+              child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+             SizedBox(height: 50,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Timer(),
+              ],
+            ),
+            FormulaLine(),
+            SizedBox(height: 30,),
+            InputLine(),
+            SizedBox(height: 50,),
+            Keyboard(),
+          ],
+        ),
       ),
     );
   }

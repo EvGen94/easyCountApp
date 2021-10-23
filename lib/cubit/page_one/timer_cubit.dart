@@ -17,9 +17,9 @@ class TimerCubit extends Cubit<TimerState> {
 
   void getTick() {
     var controller = StreamController<int>();
-   // controller.sink.add(5);
+    // controller.sink.add(5);
     ticker.tick().listen((event) {
-      controller.sink.add(event);
+      event == 0 ? print("your score is ... Start again ?") : controller.sink.add(event);
     });
 
     emit(TimerRun(controller.stream));

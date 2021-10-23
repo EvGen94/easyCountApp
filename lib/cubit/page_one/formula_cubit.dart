@@ -15,8 +15,9 @@ class FormulaCubit extends Cubit<FormulaState> {
     emit(FormulaInitial());
   }
 
-  void getFormula() {
-     List<int> _nlist = ngenerator.generateRandomNumber();
+  void getFormula(bool swich) {
+
+     List<int> _nlist = ngenerator.generateRandomNumber(swich);
     emit(FormulaG( listdata: _nlist));
   }
 

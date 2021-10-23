@@ -55,6 +55,7 @@ class Timer extends StatelessWidget {
         height: 50,
         child: Center(
           child: Text("${snapshot.data}"),
+         
         ),
       ),
     );

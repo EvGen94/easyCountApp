@@ -33,7 +33,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_bloc: ^6.1.1
+  flutter_bloc: ^7.3.1
+  material_segmented_control: ^2.1.0
+  get: ^4.3.8
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
